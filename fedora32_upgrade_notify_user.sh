@@ -1,12 +1,12 @@
 #Author: Thomas Pietzka COC AG
 #
-#script to check local fedora version and send a Desptop Notificatin to all logged in users if version is lower
+#script to check local fedora version and send a Desktop Notificatin to all logged in users if version is lower
 #
 #example to send a notification to user tester with UID 1001
 #sudo sudo DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1001/bus  -u tester notify-send -u normal -i software-update-urgent "Fedora Upgrade Available" "An new Version of Fedora is available."
 #
-#script can be setup as a cron job fore example:
-#/etc/cron.daliy/fedora32_upgrade_notify_user.sh
+#script can be setup as a cron job for example(or deployed with rpm):
+#copy to /etc/cron.daliy/fedora32_upgrade_notify_user.sh
 #chmod +x /etc/cron.daliy/fedora32_upgrade_notify_user.sh
 
 source /etc/os-release
