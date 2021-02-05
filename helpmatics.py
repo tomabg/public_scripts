@@ -67,8 +67,8 @@ HMclient = HMClient(wdsl,
 Icingaclient = IcingaClient(icingaserver, icingauser, icingapassword) #create icinga client object
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) #workaround as API certificate is self signed in Icinga
 
-#print Icingaclient.objects.get('Host', 'SDCAWG014') #for debugging
-#print (client.service.GETINCIDENTDATA('XOC-210121132823-MPu')) #for debugging
+#print Icingaclient.objects.get('Host', 'EXAMPLEHOST') #for debugging
+#print (client.service.GETINCIDENTDATA('XYZ-210121132823-MMu')) #for debugging
 
 #function to convert HM Ticket status
 def convert_ticketstatus(statusid):
@@ -100,7 +100,7 @@ def get_hm_ticket_status(ticketid):
     return convert_ticketstatus(incident_dict['INC']['STATUS_NO']) + "\n\n SOLUTION:\n" + incident_dict['INC']['SOLUTION']
 
 
-#Icingaclient.objects.get('Host', 'SDCAWG014')
+#Icingaclient.objects.get('Host', 'EXAMPLEHOST')
 
 # Icingaclient.actions.add_comment(
 #     object_type = 'Host',
