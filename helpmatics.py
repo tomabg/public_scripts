@@ -127,6 +127,8 @@ def get_hm_ticket_status(ticketid):
 Commentlist = Icingaclient.objects.list('Comment')
 
 #iterate over all comments..check if it could be a ticketID..and finally fill Helpmatics-data in a new comment
+
+#iterate over all comments..check if it could be a ticketID..and finally fill Helpmatics-data in a new comment
 for comment in Commentlist:
     #print comment['attrs']['text'] , comment['attrs']['host_name'],  comment['attrs']['service_name']
     if comment['attrs']['text'].startswith(HM_incident_startswith):
@@ -137,28 +139,32 @@ for comment in Commentlist:
         #print icingahostname
         #print icingaservicename
         newcomment = comment['attrs']['text'][0:20] + " : "  + get_hm_ticket_status(comment['attrs']['text'][0:20])
-        #print newcomment
-        #wenn service leer ist es ein hostcomment
-        if icingaservicename == '' :
-            Icingaclient.actions.remove_comment(
-                object_type = 'Host',
-                filters = 'host.name== "'+ icingahostname +'"')
-            Icingaclient.actions.add_comment(
-                object_type = 'Host',
-                filters = 'host.name== "'+ icingahostname +'"',
-                author = 'HelpmaticsScript',
-                comment = newcomment)
-        #ansonsten ist es ein servicecomment
-        else :
-            Icingaclient.actions.remove_comment(
-                object_type = 'Service',
-                filters = 'host.name=="'+ icingahostname +'" && service.name=="'+ icingaservicename +'"')
+        if newcomment != comment['attrs']['text'] :
+            #print newcomment
+            #print comment['attrs']['text']
+            
+            #wenn service leer ist es ein hostcomment
+            if icingaservicename == '' :
+                Icingaclient.actions.remove_comment(
+                    object_type = 'Host',
+                    filters = 'host.name== "'+ icingahostname +'"')
+                Icingaclient.actions.add_comment(
+                    object_type = 'Host',
+                    filters = 'host.name== "'+ icingahostname +'"',
+                    author = 'HelpmaticsScript',
+                    comment = newcomment)
+            #ansonsten ist es ein servicecomment
+            else :
+                Icingaclient.actions.remove_comment(
+                    object_type = 'Service',
+                    filters = 'host.name=="'+ icingahostname +'" && service.name=="'+ icingaservicename +'"')
 
-            Icingaclient.actions.add_comment(
-                object_type = 'Service',
-                filters = 'host.name=="'+ icingahostname +'" && service.name=="'+ icingaservicename +'"',
-                author = 'HelpmaticsScript',
-                comment = newcomment)
+                Icingaclient.actions.add_comment(
+                    object_type = 'Service',
+                    filters = 'host.name=="'+ icingahostname +'" && service.name=="'+ icingaservicename +'"',
+                    author = 'HelpmaticsScript',
+                    comment = newcomment)
+
 
 
 #print Icingaclient.objects.list('Host', filters='match("EXAMPLEHOST", host.name)')
