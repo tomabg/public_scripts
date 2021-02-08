@@ -199,7 +199,7 @@ for comment in Commentlist:
             # print icingaobject['attrs']['acknowledgement'] 
             # print HMticket['INC']['STATUS_NO']
             if icingaservicename == '' :
-                print "its a host"
+                #print "its a host"
                 Icingaclient.actions.acknowledge_problem(
                     object_type = 'Host',
                     filters = 'host.name=="'+ icingahostname,
@@ -208,14 +208,14 @@ for comment in Commentlist:
                 )
 
             else :
-                print 'its a serverice'
+                #print 'its a serverice'
                 Icingaclient.actions.acknowledge_problem(
                     object_type = 'Service',
                     filters = 'host.name=="'+ icingahostname +'" && service.name=="'+ icingaservicename +'"',
                     author = 'HelpmaticsScript',
                     comment = HMticket['INC']['ID']
                 )
-            autoACK = True #as the module not allow persistent comment wee need to rewrite it below issue opened https://github.com/joni1993/icinga2apic/issues/3
+            autoACK = True #to avoid duplicate comments we will remove and set it again below
             time.sleep(1) #sleep 1 second to avaid inconsistent comments
         #print icingaobject['attrs']['severity']
         #exit (4)
