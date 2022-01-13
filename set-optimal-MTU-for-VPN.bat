@@ -42,7 +42,9 @@ set /A "MAXMTU=!LASTGOOD! + !PACKETSIZE!"
 echo Maximum MTU for !SERVER!: !MAXMTU! bytes.
 
 
-echo This script will now set MTU size to !MAXMTU! for Interface %activeNet% (y / n)?
+echo The Command will now set MTU size to !MAXMTU! for Interface %activeNet% (ID: %activeNetID%) :
+echo netsh interface ipv4 set subinterface %activeNetID%  mtu=!MAXMTU! store=persistent
+echo Apply Commad now ?(y / n)
 SET /p wahl=
 if '%wahl%' == 'n' goto No
 if '%wahl%' == 'y' goto Yes
@@ -54,8 +56,12 @@ goto Ende
 netsh interface ipv4 set subinterface %activeNetID%  mtu=!MAXMTU! store=persistent
 :Ende
 
+
+rem Export %MAXMTU% variable.
 EndLocal
 exit /B 0
+
+
 
 :error
 rem When something unexpected occurs.
