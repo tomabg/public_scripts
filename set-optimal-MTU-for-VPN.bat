@@ -54,12 +54,8 @@ goto Ende
 netsh interface ipv4 set subinterface %activeNetID%  mtu=!MAXMTU! store=persistent
 :Ende
 
-
-rem Export %MAXMTU% variable.
 EndLocal
 exit /B 0
-
-
 
 :error
 rem When something unexpected occurs.
