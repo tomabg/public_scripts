@@ -34,8 +34,8 @@ if !ERRORLEVEL! EQU 0 (
   if !MTU! NEQ !LASTBAD! goto :seek
 )
 
-for /f "tokens=2 delims==" %%F in ('wmic nic where "NetConnectionStatus=2 and AdapterTypeId=0 and PhysicalAdapter=TRUE" get  NetConnectionID /format:list') do set activeNet=%%F
-for /f "tokens=2 delims==" %%F in ('wmic nic where "NetConnectionStatus=2 and AdapterTypeId=0 and PhysicalAdapter=TRUE" get  InterfaceIndex /format:list') do set activeNetID=%%F
+for /f "tokens=2 delims==" %%F in ('wmic nic where "NetConnectionStatus=2 and AdapterTypeId=0 and PhysicalAdapter=TRUE and  NOT Name LIKE '%%VPN%%'" get  NetConnectionID  /format:list') do set activeNet=%%F
+for /f "tokens=2 delims==" %%F in ('wmic nic where "NetConnectionStatus=2 and AdapterTypeId=0 and PhysicalAdapter=TRUE and  NOT Name LIKE '%%VPN%%'" get  InterfaceIndex /format:list') do set activeNetID=%%F
 
 rem Print the result.
 set /A "MAXMTU=!LASTGOOD! + !PACKETSIZE!"
