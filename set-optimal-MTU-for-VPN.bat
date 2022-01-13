@@ -34,8 +34,17 @@ if !ERRORLEVEL! EQU 0 (
   if !MTU! NEQ !LASTBAD! goto :seek
 )
 
-for /f "tokens=2 delims==" %%F in ('wmic nic where "NetConnectionStatus=2 and AdapterTypeId=0 and PhysicalAdapter=TRUE and  NOT Name LIKE '%%VPN%%'" get  NetConnectionID  /format:list') do set activeNet=%%F
-for /f "tokens=2 delims==" %%F in ('wmic nic where "NetConnectionStatus=2 and AdapterTypeId=0 and PhysicalAdapter=TRUE and  NOT Name LIKE '%%VPN%%'" get  InterfaceIndex /format:list') do set activeNetID=%%F
+rem for /f "tokens=2 delims==" %%F in ('wmic nic where "NetConnectionStatus=2 and AdapterTypeId=0 and PhysicalAdapter=TRUE and  NOT Name LIKE '%%VPN%%'" get  NetConnectionID  /format:list') do set activeNet=%%F
+rem for /f "tokens=2 delims==" %%F in ('wmic nic where "NetConnectionStatus=2 and AdapterTypeId=0 and PhysicalAdapter=TRUE and  NOT Name LIKE '%%VPN%%'" get  InterfaceIndex /format:list') do set activeNetID=%%F
+
+
+for /f "tokens=1,2,3 skip=1 delims=," %%a in (
+    'Powershell -C "Get-NetAdapter -Physical | Where-Object  { $_.Status -eq 'Up' } | Select-Object -Property Name,ifIndex  | ConvertTo-Csv  -NoTypeInformation"'
+) Do (
+	Set "activeNet=%%~a"
+    Set "activeNetID=%%~b"
+)
+
 
 rem Print the result.
 set /A "MAXMTU=!LASTGOOD! + !PACKETSIZE!"
