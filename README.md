@@ -1,7 +1,7 @@
 # public_scripts
 repo with public scripts
 
-set-optimal-MTU-for-VPN.bat will find out and set MTU size...this is needed for IKE VPN and Provider Vodafone Cable with DSLite
+set-optimal-MTU-for-VPN.bat .....will find out and set MTU size...this is needed for IKE VPN and Provider Vodafone Cable with DSLite
 
 
 Usage for DownloadFilesFromRepo.ps1:
