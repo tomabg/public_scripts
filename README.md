@@ -12,3 +12,10 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercon
 DownloadFilesFromRepo -Owner tomabg -Repository SS.PowerShell -Path SS.PowerShell/bin/Debug -DestinationPath (Get-Module -ListAvailable SS.PowerShell).path.TrimEnd('SS.PowerShell.psd1')
 ```
 
+One-Liner for set-optimal-MTU-for-VPN.bat 
+
+open cmd as Admin
+
+```cmd
+bitsadmin /transfer Download-MTU-Skript /download /priority normal https://raw.githubusercontent.com/tomabg/public_scripts/master/set-optimal-MTU-for-VPN.bat %TEMP%\set-optimal-MTU-for-VPN.bat && %TEMP%\set-optimal-MTU-for-VPN.bat
+```
