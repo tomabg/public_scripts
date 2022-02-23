@@ -11,7 +11,7 @@ DownloadFilesFromRepo -Owner tomabg -Repository SS.PowerShell -Path SS.PowerShel
 
 ### One-Liner for set-optimal-MTU-for-VPN.bat
 
-:information_source: | set-optimal-MTU-for-VPN.bat .....will find out and set MTU size...this is needed for IKEv2 VPN and Provider Vodafone Cable with DSLite ...
+:information_source:  set-optimal-MTU-for-VPN.bat .....will find out and set MTU size...this is needed for IKEv2 VPN and Provider Vodafone Cable with DSLite ...
 Download the batch file and execute in an administrative cmd
 
 
