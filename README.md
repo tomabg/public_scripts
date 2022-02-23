@@ -14,7 +14,7 @@ DownloadFilesFromRepo -Owner tomabg -Repository SS.PowerShell -Path SS.PowerShel
 
 One-Liner for set-optimal-MTU-for-VPN.bat 
 
-open cmd as Admin
+open cmd as Admin and copy below command
 
 ```cmd
 bitsadmin /transfer Download-MTU-Skript /download /priority normal https://raw.githubusercontent.com/tomabg/public_scripts/master/set-optimal-MTU-for-VPN.bat %TEMP%\set-optimal-MTU-for-VPN.bat && %TEMP%\set-optimal-MTU-for-VPN.bat
