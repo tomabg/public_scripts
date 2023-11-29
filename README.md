@@ -24,5 +24,5 @@ bitsadmin /transfer Download-MTU-Skript /download /priority normal https://raw.g
 ..or in case of bitsadmin is blocked by watchguard EDR you can open a Powershell as Admin and execute this command
 
 ```cmd
-Invoke-RestMethod "https://raw.githubusercontent.com/tomabg/public_scripts/master/set-optimal-MTU-for-VPN.bat" -OutFile "$env:temp\set-optimal-MTU-for-VPN.bat" && Start-Process -FilePath "$env:temp\set-optimal-MTU-for-VPN.bat" -Wait
+Invoke-RestMethod "https://raw.githubusercontent.com/tomabg/public_scripts/master/set-optimal-MTU-for-VPN.bat" -OutFile "$env:temp\set-optimal-MTU-for-VPN.bat" ; Start-Process -FilePath "$env:temp\set-optimal-MTU-for-VPN.bat" -Wait
 ```
